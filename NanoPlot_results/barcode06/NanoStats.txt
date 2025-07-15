@@ -1,0 +1,27 @@
+General summary:         
+Mean read length:                 4,586.3
+Mean read quality:                   16.2
+Median read length:               2,726.0
+Median read quality:                 19.7
+Number of reads:                642,993.0
+Read length N50:                  8,375.0
+STDEV read length:                5,275.6
+Total bases:              2,948,983,250.0
+Number, percentage and megabases of reads above quality cutoffs
+>Q10:	622582 (96.8%) 2946.2Mb
+>Q15:	548805 (85.4%) 2666.8Mb
+>Q20:	305525 (47.5%) 1588.4Mb
+>Q25:	45562 (7.1%) 179.0Mb
+>Q30:	3356 (0.5%) 4.8Mb
+Top 5 highest mean basecall quality scores and their read lengths
+1:	42.1 (686)
+2:	41.7 (326)
+3:	40.7 (837)
+4:	40.5 (368)
+5:	40.4 (201)
+Top 5 longest reads and their mean basecall quality score
+1:	85800 (12.1)
+2:	83814 (12.5)
+3:	79175 (13.9)
+4:	77555 (15.3)
+5:	75555 (11.5)

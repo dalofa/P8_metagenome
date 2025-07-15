@@ -1,0 +1,26 @@
+name: nanoplot_env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pandas>=1.3  # Ensure pandas is available for dataframe ops
+  - click
+  - pyyaml
+  - pillow
+  - pyparsing
+  - beautifulsoup4
+  - markupsafe
+  - pygments
+  - requests
+  - future
+  - pytest
+  - psutil
+  - webencodings
+  - importlib-metadata
+  - pip:
+      - nanoplot==1.42.0
+      - kaleido==0.2.1
+      - "plotly<6"  # Optional: prevent bleeding edge versions if you're worried

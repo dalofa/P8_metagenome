@@ -1,0 +1,28 @@
+2025-07-15 10:43:09,113 NanoPlot 1.42.0 started with arguments Namespace(threads=4, verbose=False, store=False, raw=False, huge=False, outdir='NanoPlot_results/barcode08', no_static=False, prefix='', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=True, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['hex', 'dot', 'kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=False, title=None, font_scale=1, dpi=100, hide_stats=False, fastq=['data/np_data/barcode08.fq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='NanoPlot_results/barcode08/')
+2025-07-15 10:43:09,113 Python version is: 3.10.18 | packaged by conda-forge | (main, Jun  4 2025, 14:45:41) [GCC 13.3.0]
+2025-07-15 10:43:09,122 Nanoget: Starting to collect statistics from plain fastq file.
+2025-07-15 10:43:09,122 Nanoget: Decompressing gzipped fastq data/np_data/barcode08.fq.gz
+2025-07-15 10:45:28,030 Reduced DataFrame memory usage from 5.0Mb to 5.0Mb
+2025-07-15 10:45:28,056 Nanoget: Gathered all metrics of 327672 reads
+2025-07-15 10:45:28,192 Calculated statistics
+2025-07-15 10:45:28,192 Using sequenced read lengths for plotting.
+2025-07-15 10:45:28,196 Using log10 scaled read lengths.
+2025-07-15 10:45:28,220 NanoPlot:  Valid color #4CB391.
+2025-07-15 10:45:28,220 NanoPlot:  Valid colormap Greens.
+2025-07-15 10:45:28,228 NanoPlot:  Creating length plots for Read length.
+2025-07-15 10:45:28,228 NanoPlot:  Using 327672 reads maximum of 92615bp.
+2025-07-15 10:45:29,138 Saved NanoPlot_results/barcode08/WeightedHistogramReadlength  as png (or png for --legacy)
+2025-07-15 10:45:29,968 Saved NanoPlot_results/barcode08/WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-07-15 10:45:30,824 Saved NanoPlot_results/barcode08/Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-07-15 10:45:31,649 Saved NanoPlot_results/barcode08/Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-07-15 10:45:33,093 Saved NanoPlot_results/barcode08/Yield_By_Length  as png (or png for --legacy)
+2025-07-15 10:45:33,093 Created length plots
+2025-07-15 10:45:33,096 NanoPlot: Creating Read lengths vs Average read quality plots using 327672 reads.
+2025-07-15 10:45:34,636 Saved NanoPlot_results/barcode08/LengthvsQualityScatterPlot_dot  as png (or png for --legacy)
+2025-07-15 10:45:36,778 Saved NanoPlot_results/barcode08/LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-07-15 10:45:36,796 NanoPlot: Creating Read lengths vs Average read quality plots using 327672 reads.
+2025-07-15 10:45:38,284 Saved NanoPlot_results/barcode08/LengthvsQualityScatterPlot_loglength_dot  as png (or png for --legacy)
+2025-07-15 10:45:40,382 Saved NanoPlot_results/barcode08/LengthvsQualityScatterPlot_loglength_kde  as png (or png for --legacy)
+2025-07-15 10:45:40,382 Created LengthvsQual plot
+2025-07-15 10:45:40,383 Writing html report.
+2025-07-15 10:45:40,424 Finished!

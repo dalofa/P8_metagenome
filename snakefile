@@ -7,19 +7,24 @@ SAMPLES = [os.path.basename(f).replace(".fastq.gz", "").replace(".fq.gz", "") fo
 #-----------------RULE ALL: REQUEST ALL OUTPUT FILES
 rule all:
     input:
-        expand("NanoPlot_results/{sample}/NanoPlot-report.html", sample=SAMPLES)
+        expand("00_nanoplot/{sample}/NanoPlot-report.html", sample=SAMPLES)
+	expand
 
 
-#-----------------QC RAW READS
+#-----------------QC OF RAW READS
 rule nanoplot:
     input:
         "data/np_data/{sample}.fq.gz"
     output:
         html="NanoPlot_results/{sample}/NanoPlot-report.html"
+    conda:
+        "envs/nanoplot_env.yaml"  # Path to your environment YAML file
     shell:
         """
-        NanoPlot --fastq {input} --outdir NanoPlot_results/{wildcards.sample} --loglength --loggc
+        NanoPlot --fastq {input} --outdir 00_nanoplot/{wildcards.sample} --loglength --plots dot kde
         """
+
+##-----------------QC OF RAW READS
 
 
 
