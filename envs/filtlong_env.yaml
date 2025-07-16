@@ -1,0 +1,8 @@
+name: filtlong_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - filtlong
+  - gzip
