@@ -4,11 +4,12 @@ from glob import glob
 input_files = glob("data/np_data/*.fq.gz")
 SAMPLES = [os.path.basename(f).replace(".fastq.gz", "").replace(".fq.gz", "") for f in input_files]
 
+print(SAMPLES)
 #-----------------RULE ALL: REQUEST ALL OUTPUT FILES
 rule all:
     input:
         expand("00_nanoplot/{sample}/NanoPlot-report.html", sample=SAMPLES),
-	expand("01_filtered_reads/{sample}.fastq.gz", sample=SAMPLES),
+        expand("01_filtered_reads/{sample}.fastq.gz", sample=SAMPLES),
         expand("02_metaflye/{sample}/assembly.fasta", sample=SAMPLES)
 
 #-----------------QC OF RAW READS
@@ -35,7 +36,7 @@ rule filtlong:
     params:
         min_length=1000
     conda:
-        "envs/nanoplot_env.yaml"
+        "envs/filtlong_env.yaml"
     shell:
         """
         filtlong --min_length {params.min_length} {input} | gzip > {output}
@@ -48,7 +49,7 @@ rule metaflye:
     output:
         "02_metaflye/{sample}/assembly.fasta"
     params:
-        directory=lambda wildcards, output: subpath(output[0], parent=True)
+        directory=lambda wildcards, output: os.path.dirname(output[0])
     threads:
          16
     conda:
