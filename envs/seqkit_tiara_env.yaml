@@ -1,0 +1,9 @@
+name: seqkit_tiara
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8.0
+  - seqkit
+  - tiara

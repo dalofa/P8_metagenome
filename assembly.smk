@@ -29,7 +29,7 @@ rule nanoplot:
         NanoPlot --fastq {input} --outdir 00_nanoplot/{wildcards.sample} --loglength --plots dot kde
         """
 
-##-----------------Filtlong
+#-----------------Filtlong
 # Reads smaller than a 1 kb are excluded for assembly
 rule filtlong:
     input:
@@ -63,7 +63,7 @@ rule metaflye:
         """
 
 
-##-----------------metaMDBG
+#-----------------metaMDBG
 # The filtered reads are used for assembly with metaMDBG
 rule metaMDBG:
     input:
@@ -97,3 +97,5 @@ rule myloasm:
         """
           myloasm {input} -o {params.directory} -t {threads}
         """
+
+
