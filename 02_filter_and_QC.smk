@@ -9,12 +9,12 @@ ASSEMBLIES = glob_wildcards("05_assemblies/{sample}_{assembler}.fa")
 rule all:
     input:
         expand(
-            "06_filt_assemblies/{sample}_{assembler}_filt.fa",
+            "06_tmp/{sample}_{assembler}_filt.fa",
             sample=ASSEMBLIES.sample,
             assembler=ASSEMBLIES.assembler
         ),
         expand(
-            "07_tiara/{sample}_{assembler}_classification.tsv",
+            "06_tiara/{sample}_{assembler}_classification.tsv",
             sample=ASSEMBLIES.sample,
             assembler=ASSEMBLIES.assembler
         )
@@ -26,7 +26,7 @@ rule filter_contigs:
     input:
         "05_assemblies/{sample}_{assembler}.fa"
     output:
-        "06_filt_assemblies/{sample}_{assembler}_filt.fa"
+        "06_tmp/{sample}_{assembler}_filt.fa"
     threads:
         32
     conda:
@@ -39,9 +39,9 @@ rule filter_contigs:
 # The filtered reads are used for assembly with myloasm
 rule tiara_filt:
     input:
-        "06_filt_assemblies/{sample}_{assembler}_filt.fa"
+        "06_tmp/{sample}_{assembler}_filt.fa"
     output:
-        "07_tiara/{sample}_{assembler}_classification.tsv"
+        "06_tiara/{sample}_{assembler}_classification.tsv"
     threads:
         32
     conda:
@@ -49,6 +49,10 @@ rule tiara_filt:
     shell:
         """
           tiara -i {input} -t {threads} -m 3000 -o {output}
+          grep -e "prokarya" -e "bacteria" -e "archaea" -e "unknown" {output} | cut -f1 > 06_tiara/bacterial_contigs.txt
+          grep -e "eukarya" {output} | cut -f1 > 06_tiara/eukaryote_contigs.txt
+          seqkit grep -f 06_tiara/bacterial_contigs.txt {input} > 06_tiara/bacterial_contigs.fasta
+          seqkit grep -f 06_tiara/eukaryote_contigs.txt {input} > 06_tiara/eukaryote_contigs.fasta
         """
 
 
