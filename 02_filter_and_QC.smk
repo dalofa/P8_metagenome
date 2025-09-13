@@ -8,11 +8,13 @@ ASSEMBLIES = glob_wildcards("05_assemblies/{sample}_{assembler}.fa")
 #-----------------RULE ALL: REQUEST ALL OUTPUT FILES
 rule all:
     input:
+        # Filter small contigs
         expand(
             "06_tmp/{sample}_{assembler}_filt.fa",
             sample=ASSEMBLIES.sample,
             assembler=ASSEMBLIES.assembler
         ),
+        # Classify contigs
         expand(
             "06_tiara/{sample}_{assembler}_classification.tsv",
             sample=ASSEMBLIES.sample,
@@ -49,13 +51,8 @@ rule tiara_filt:
     shell:
         """
           tiara -i {input} -t {threads} -m 3000 -o {output}
-          grep -e "prokarya" -e "bacteria" -e "archaea" -e "unknown" {output} | cut -f1 > 06_tiara/bacterial_contigs.txt
-          grep -e "eukarya" {output} | cut -f1 > 06_tiara/eukaryote_contigs.txt
-          seqkit grep -f 06_tiara/bacterial_contigs.txt {input} > 06_tiara/bacterial_contigs.fasta
-          seqkit grep -f 06_tiara/eukaryote_contigs.txt {input} > 06_tiara/eukaryote_contigs.fasta
+          grep -e "prokarya" -e "bacteria" -e "archaea" -e "unknown" {output} | cut -f1 > 06_tiara/{wildcards.sample}_{wildcards.assembler}_bacterial_contigs.txt
+          grep -e "eukarya" {output} | cut -f1 > 06_tiara/{wildcards.sample}_{wildcards.assembler}_eukaryote_contigs.txt
+          seqkit grep --by-name -f 06_tiara/{wildcards.sample}_{wildcards.assembler}_bacterial_contigs.txt {input} > 06_tiara/{wildcards.sample}_{wildcards.assembler}_bacterial_contigs.fasta
+          seqkit grep --by-name -f 06_tiara/{wildcards.sample}_{wildcards.assembler}_eukaryote_contigs.txt {input} > 06_tiara/{wildcards.sample}_{wildcards.assembler}_eukaryote_contigs.fasta
         """
-
-
-
-
-
